@@ -17,7 +17,7 @@ int main(void) {
     if (kwh <= BREAK1) bill = RATE1 * kwh;
     else if (kwh <= BREAK2) bill = BASE1 + (RATE2 * (kwh - BREAK1));
     else if (kwh <= BREAK3) bill = BASE2 + (RATE3 * (kwh - BREAK2));
-    else bill = BASE3 + (RATE4* (kwh - BREAK3));
+    else bill = BASE3 + (RATE4 * (kwh - BREAK3));
 
     return 0;
 }
