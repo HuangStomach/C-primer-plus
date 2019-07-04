@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 void copy_arr(double [], double [], int);
 void copy_ptr(double *, double *, int);
 void copy_ptrs(double [], double *, double *);
