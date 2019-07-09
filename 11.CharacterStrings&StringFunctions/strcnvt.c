@@ -27,7 +27,7 @@ char * s_gets(char * st, int n) {
         while (st[i] != '\n' && st[i] != '\0') {
             i++;
         }
-        if (st[i] == '\n') st[i] == '\0';
+        if (st[i] == '\n') st[i] = '\0';
         else {
             while (getchar() != '\n') {
                 continue;

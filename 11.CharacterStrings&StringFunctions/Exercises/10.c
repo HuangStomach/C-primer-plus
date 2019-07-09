@@ -1,23 +1,28 @@
 #include <stdio.h>
-#define MAX 20
-char * s_gets(char * stm, int n);
+#include <string.h>
+void del_blank(char *);
+char * s_gets(char *, int);
 
 int main(void) {
-    char first[MAX];
-    char last[MAX];
-    char formal[2 * MAX + 10];
-    double prize;
-
-    puts("First name：");
-    s_gets(first, MAX);
-    puts("Last name：");
-    s_gets(last, MAX);
-    puts("Prize：");
-    scanf("%lf", &prize);
-    sprintf(formal, "%s, %-19s: $%6.2f\n", last, first, prize);
-    puts(formal);
-
+    char s1[80];
+    
+    while (s_gets(s1, 80)) {
+        del_blank(s1);
+        printf("%s\n", s1);
+    }
+    
     return 0;
+}
+
+void del_blank(char * s1) {
+	unsigned long spaces_found = 0;
+
+	while (*s1 != '\0') {
+		if (*s1 == ' ') spaces_found++;
+		else *(s1 - spaces_found) = *s1;
+
+		s1++;
+	}
 }
 
 char * s_gets(char * st, int n) {
