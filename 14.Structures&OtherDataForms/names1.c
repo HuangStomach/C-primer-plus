@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <string.h>
+#define NLEN 30
+struct namect {
+    char fname[NLEN];
+    char lname[NLEN];
+    int letters;
+};
+
+void getinfo(struct namect *);
+void makeinfo(struct namect *);
+void showinfo(const struct namect *);
+char * s_gets(char * st, int n);
+
+int main(void) {
+    struct namect person;
+    getinfo(&person);
+    makeinfo(&person);
+    showinfo(&person);
+    return 0;
+}
+
+void getinfo(struct namect * pst) {
+    printf("first name?\n");
+    s_gets(pst->fname, NLEN);
+    printf("last name?\n");
+    s_gets(pst->lname, NLEN);
+}
+
+void makeinfo(struct namect * pst) {
+    pst->letters = strlen(pst->fname) + strlen(pst->lname);
+}
+
+void showinfo(const struct namect * pst) {
+    printf("sth");
+}
+
+char * s_gets(char * st, int n) {
+    char * ret_val;
+    int i = 0;
+
+    ret_val = fgets(st, n, stdin);
+    if (ret_val) {
+        while (st[i] != '\n' && st[i] != '\0') {
+            i++;
+        }
+        if (st[i] == '\n') st[i] = '\0';
+        else {
+            while (getchar() != '\n') {
+                continue;
+            }
+        }
+    }
+
+    return ret_val;
+}
+
