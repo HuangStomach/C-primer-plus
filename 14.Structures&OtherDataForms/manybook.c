@@ -22,7 +22,7 @@ int main(void) {
         printf("author?\n");
         s_gets(library[count].author, MAXAUTL);
         printf("value?\n");
-        scanf("%f", &library[count].value);
+        scanf("%f", &library[count++].value);
         while (getchar() != '\n') continue;
         
         if (count < MAXBKS) printf("title?\n");
