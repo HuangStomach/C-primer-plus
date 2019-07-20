@@ -38,7 +38,7 @@ int main(void) {
         printf("author?\n");
         s_gets(library[count].author, MAXTITL);
         puts("value?");
-        scanf("%f", &library[count].value);
+        scanf("%f", &library[count++].value);
         while (getchar() != '\n');
     }
     
