@@ -2,18 +2,22 @@
 #define LIST_H_
 #include <stdbool.h>
 #define TSIZE 45
+#define MAXSIZE 100
 
 typedef struct film {
     char title[TSIZE];
     int rating;
 } Item;
 
-typedef struct node {
+/* typedef struct node {
     Item item;
     struct node * next;
-} Node;
+} Node; */
 
-typedef Node * List;
+typedef struct list {
+    Item entries[MAXSIZE];
+    int items;
+} List;
 
 /**
  * 初始化链表

@@ -8,7 +8,8 @@ bool newcustomer(double x);
 Item customertime(long when);
 
 int main(void) {
-    Queue line;
+    Queue line1;
+    Queue line2;
     Item temp;
     int hours;
     int perhour;
@@ -21,7 +22,9 @@ int main(void) {
     double min_per_cust;
     long line_wait = 0;
 
-    InitializeQueue(&line);
+    InitializeQueue(&line1);
+    InitializeQueue(&line2);
+
     srand((unsigned int) time(0));
     puts("Enter the number of simulation hours:");
     scanf("%d", &hours);
@@ -32,29 +35,48 @@ int main(void) {
 
     for (cycle = 0; cycle < cyclelimit; cycle++) {
         if (newcustomer(min_per_cust)) {
-            if (QueueIsFull(&line)) turnaways;
+            if (QueueIsFull(&line1)) turnaways;
             else {
                 customers++;
                 temp = customertime(cycle);
-                EnQueue(temp, &line);
+                EnQueue(temp, &line1);
             }
         }
 
-        if (wait_time <= 0 && !QueueIsEmpty(&line)) {
-            DeQueue(&temp, &line);
+        if (wait_time <= 0 && !QueueIsEmpty(&line1)) {
+            DeQueue(&temp, &line1);
             wait_time = temp.processtime;
             line_wait += cycle - temp.arrvie;
             served++;
         }
         if (wait_time > 0) wait_time--;
-        sum_line += QueueItemCount(&line);
+        sum_line += QueueItemCount(&line1);
+
+        if (newcustomer(min_per_cust)) {
+            if (QueueIsFull(&line2)) turnaways;
+            else {
+                customers++;
+                temp = customertime(cycle);
+                EnQueue(temp, &line2);
+            }
+        }
+
+        if (wait_time <= 0 && !QueueIsEmpty(&line2)) {
+            DeQueue(&temp, &line2);
+            wait_time = temp.processtime;
+            line_wait += cycle - temp.arrvie;
+            served++;
+        }
+        if (wait_time > 0) wait_time--;
+        sum_line += QueueItemCount(&line2);
     }
 
     if (customers > 0) {
         puts("some out put……");
     }
     else puts("No customers!");
-    EmptyTheQueue(&line);
+    EmptyTheQueue(&line1);
+    EmptyTheQueue(&line2);
     puts("Bye!.");
 
     return 0;

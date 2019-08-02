@@ -13,7 +13,10 @@ typedef struct node {
     struct node * next;
 } Node;
 
-typedef Node * List;
+typedef struct list {
+    Node * head;
+    Node * end;
+} List;
 
 /**
  * 初始化链表

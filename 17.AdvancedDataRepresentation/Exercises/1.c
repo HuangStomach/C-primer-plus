@@ -10,6 +10,7 @@ struct film {
 };
 
 char * s_gets(char * st, int n);
+void backward(const struct film *);
 
 int main(void) {
     struct film * head = NULL;
@@ -44,6 +45,8 @@ int main(void) {
         current = current->next;
     }
 
+    backward(head);
+
     current = head;
     while (head != NULL) {
         current = head;
@@ -52,6 +55,13 @@ int main(void) {
     }
 
     return 0;
+}
+
+void backward(const struct film * head) {
+    if (head->next != NULL) {
+        backward(head->next);
+    }
+    printf("Backward movie: %s Rating: %d\n", head->title, head->rating);
 }
 
 char * s_gets(char * st, int n) {
